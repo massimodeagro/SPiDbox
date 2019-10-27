@@ -34,7 +34,6 @@ from rotary import rothread #reads the rotary encored
 
 #training procedures
 from habitScreen import habit #habituation phase. No sensors, only dispenser
-from trainScreen import trainS #testing phase with pictures on the screen
 from trainNoScreen import trainNS #testing phase without the screen. differently coloured sensors
 
 #define I2C modules
@@ -69,7 +68,7 @@ fontT = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
 
 #menu entry names
 tabs = ['launch','settings'] #main entry
-tests = ['back','habituation','trainLR','trainXO'] #"launch" submenu
+tests = ['back','habituation','trainLR'] #"launch" submenu
 setups = ['back','prime','clean', 'resistors','subjs','turn off'] #"settings" submenu
 
 #creating state variable used to navigate the menu
@@ -246,74 +245,6 @@ while True: #enters in an infinite loop displaying the menu
                             logging.info('Started train screen')
                             start=datetime.datetime.now()
                             trainNS(name,test,side,start,canvas, device,font, fontT)  
-                    #third experimental routine
-                    elif case ==3:
-                        logging.info('Got in X and O mode')
-                        case=0
-                        while True:
-                            with canvas(device) as draw:
-                                for n, line in enumerate(['X','O']):
-                                    draw.rectangle(((0,0),(128,20)),"white")
-                                    draw.text((6,0), 'correct shape', font=fontT, fill="black")
-                                    draw.text((17,24+(n*20)-(case*20)), line, font=font, fill="white")
-                                    pixelart(draw,icons.arrow,(0,26),0)
-                            tout = rothread(pin.cl,pin.dt,pin.sw)
-                            if tout!=0:
-                                logging.info('Rotated the knob')
-                                case+=tout
-                                if case<0:
-                                    case=0
-                                elif case>len(['X','O'])-1:
-                                    case=len(['X','O'])-1
-                            else:
-                                logging.info('Clicked')
-                                time.sleep(0.3)
-                                shape = ['X','O'][case]
-                                break
-                        while True:
-                            with canvas(device) as draw:
-                                for n, line in enumerate(subjs):
-                                    draw.rectangle(((0,0),(128,20)),"white")
-                                    draw.text((6,0), 'subject', font=fontT, fill="black")
-                                    draw.text((17,24+(n*20)-(case*20)), line, font=font, fill="white")
-                                    pixelart(draw,icons.arrow,(0,26),0)
-                            tout = rothread(pin.cl,pin.dt,pin.sw)
-                            if tout!=0:
-                                logging.info('Rotated the knob')
-                                case+=tout
-                                if case<0:
-                                    case=0
-                                elif case>len(subjs)-1:
-                                    case=len(subjs)-1
-                            else:
-                                logging.info('Clicked')
-                                time.sleep(0.3)
-                                name = subjs[case]
-                                break
-                        if name!='back':
-                            testnum = 1
-                            while True:
-                                with canvas(device) as draw:
-                                    draw.rectangle(((0,0),(128,20)),"white")
-                                    draw.text((6,0), 'trainXO num', font=fontT, fill="Black")
-                                    draw.text((60,26), str(testnum), font=font, fill="white")
-                                tout = rothread(pin.cl,pin.dt,pin.sw)
-                                if tout!=0:
-                                    logging.info('Rotated the knob')
-                                    testnum+=tout
-                                else:
-                                    logging.info('Clicked')
-                                    time.sleep(0.3)
-                                    test = str(testnum)
-                                    break
-                            with canvas(device) as draw:
-                                draw.rectangle(((0,0),(128,64)),"white")
-                                draw.text((0,20), name+'_trainXO_'+str(testnum), font=font, fill="black")
-                            time.sleep(2)
-                            
-                            logging.info('Started train screen')
-                            start=datetime.datetime.now()
-                            trainS(name,test,shape,start,canvas, device,font, fontT)       
                             
         #%% settings section. the overall structure is similar to the launchables                      
         elif case==1:
