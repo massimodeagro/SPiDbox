@@ -1,12 +1,14 @@
-""" complete program, launch this"""
-
-import datetime
+"""
+This file contains the habituation procedure
+it is called by the main menu
+"""
 
 # Import required libraries
 import RPi.GPIO as GPIO
 from threading import Thread
 import picamera
 import os
+import datetime
 
 import epd2in9
 import Image
@@ -17,8 +19,9 @@ import drop
 #import MPR121 as cap
 import pin
 
+#training procedure with the two sensors
 def trainNS(name,test,cside,start,canvas, device,font, fontT):
-    print ("in the function")
+    print ("in the function") #to debug
     from time import time as getsecs
     from time import sleep
     #%%#####################################################################%%#
@@ -34,6 +37,7 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
         log.write(date+','+str(time)+',TestStart\n')    
     print ("after logfile")
     
+    #start the video
     cam = picamera.PiCamera()
     cam.resolution = (1296,972)
     cam.framerate = 5
@@ -47,24 +51,25 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
     #%%#####################################################################%%#
     #------------------------------STARTING PROGRAM---------------------------#
     #
+    #definition of state variables
     c=0
-    w=0                                                                         #
+    w=0                                                                       #
     killing = False
     Cpressed = False
     Wpressed = False
 
-    pos = 0                                                                   #
+    pos = 0  #current motor position                                          #
     delivering = False                                                        #
     dropPresent = False                                                       #
-    stepsnum = 19
-    #drinking = False                                                         #
-    #drank = False                                                            #
+    stepsnum = 19 #number of steps for a drop
     #                                                                         #
     #-------------------------------------------------------------------------#
     ###########################################################################
+    
     ###################################################################
     #-|-|-|-|-|-|-|-|-PRIME SCREEN AND BUTTONS|-|-|-|-|-|-|-|-|-|-|-|-#
     #                                                                 #
+    #make sure the screen is white
     W = Image.open('screenImages/W.bmp')
     B = Image.open('screenImages/B.bmp')
     if cside == 'left':
@@ -84,6 +89,7 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
 
     #                                                                 #
     #-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-#
+    
     #%%########################################################################
     #--------------------------------MAIN LOOP--------------------------------#
     while (True):
@@ -91,10 +97,10 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
         #%%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/%%#
         #-------------------------FOR CORRECT RESISTOR------------------------#
         #                                                                     #
-        if not Cpressed:
-            if GPIO.input(photoCORRECT):
+        if not Cpressed: #if currently the correct button was not being pressed
+            if GPIO.input(photoCORRECT): #but now it is
                 print ("Cpressed")
-                Cpressed = True
+                Cpressed = True #change state
                 #logging                                                  #
                 time = (datetime.datetime.now()-start).total_seconds()    #
                 date = str(datetime.datetime.now())                       #
@@ -106,24 +112,24 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
                     #                                                   #     #
                     if not delivering and not dropPresent:              #     #
                         delivering = True # delivering state            #     #
-                                                                        #     #
-                        deliverer=Thread(name='Perist',target=drop.stepmove,   #
-                                    args=(pin.stp,pin.clk,0,stepsnum,pos))                    #     #
+                        #deliver the drop                               #     #
+                        deliverer=Thread(name='Perist',target=drop.stepmove,  #
+                                    args=(pin.stp,pin.clk,0,stepsnum,pos))    # 
                         deliverer.start() # deliver a drop              #     #
-                        pos = drop.postrack(stepsnum,pos)                     #     #
+                        pos = drop.postrack(stepsnum,pos)               #     #
                     #                       end                         #     #                    
                     #   #   #   #   #   #   #   #   #   #   #   #   #   #     #                    
                    
         if Cpressed: #if is being pressed                                     #
-           if not GPIO.input(photoCORRECT):
+           if not GPIO.input(photoCORRECT): #but then is not
                 print ("Crelease")
                 Cpressed=False
-                #logging                                                  #
-                time = (datetime.datetime.now()-start).total_seconds()    #
-                date = str(datetime.datetime.now())                       #
+                #logging                                                      #
+                time = (datetime.datetime.now()-start).total_seconds()        #
+                date = str(datetime.datetime.now())                           #
                 with open(logname,'a') as log:
-                    log.write(date+','+str(time)+',Crelease\n')           #
-                waitforRetract = getsecs() #start waiting for retraction  #                        
+                    log.write(date+','+str(time)+',Crelease\n')               #
+                waitforRetract = getsecs() #start waiting for retraction      #                        
         #                                                                     #
         #---------------------------------------------------------------------#
         #/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
@@ -132,33 +138,34 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
         #%%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/%%#
         #--------------------------FOR WRONG RESISTOR-------------------------#
         #                                                                     #
-        if not Wpressed:
-            if GPIO.input(photoWRONG):
-                Wpressed=True
-                print ("Wpressed")
-                time = (datetime.datetime.now()-start).total_seconds()    #
-                date = str(datetime.datetime.now())                       #
-                with open(logname,'a') as log:
-                    log.write(date+','+str(time)+',Wpressed\n')           #
+        #if the wrong is pressed you need to do nothing but remove the drop if is currently present
+        if not Wpressed:                                                      #
+            if GPIO.input(photoWRONG):                                        #
+                Wpressed=True                                                 #
+                print ("Wpressed")                                            #
+                time = (datetime.datetime.now()-start).total_seconds()        #
+                date = str(datetime.datetime.now())                           #
+                with open(logname,'a') as log:                                #
+                    log.write(date+','+str(time)+',Wpressed\n')               #
                 w+=1
-                #   #   #   #   #   #   #   #   #   #   #   #   #   #     #
-                #           wrong button has become pressed         #     #
-                #                                                   #     #
-                if dropPresent:
-                    retracter=Thread(name='suck',target=drop.dcmove,args=(pin.dc,3))                             #
-                    retracter.start()                                             #
-                    dropPresent = False
-                    #logging                                                      #
-                    time = (datetime.datetime.now()-start).total_seconds()        #
-                    date = str(datetime.datetime.now())                           #
+                #   #   #   #   #   #   #   #   #   #   #   #   #   #         #
+                #           wrong button has become pressed         #         #
+                #                                                   #         #
+                if dropPresent: #if drop is present, remove
+                    retracter=Thread(name='suck',target=drop.dcmove,args=(pin.dc,3))
+                    retracter.start()                                         #
+                    dropPresent = False                                       #
+                    #logging                                                  #
+                    time = (datetime.datetime.now()-start).total_seconds()    #
+                    date = str(datetime.datetime.now())                       #
                     with open(logname,'a') as log:
-                        log.write(date+','+str(time)+',DropRetract\n')            #
-                #                                                   #     #                    
-                #                       end                         #     #
-                #   #   #   #   #   #   #   #   #   #   #   #   #   #     #
+                        log.write(date+','+str(time)+',DropRetract\n')        #
+                #                                                   #         #                    
+                #                       end                         #         #
+                #   #   #   #   #   #   #   #   #   #   #   #   #   #         #
         if Wpressed: #if is being pressed                                     #
-            if not GPIO.input(photoWRONG):
-                Wpressed=False  
+            if not GPIO.input(photoWRONG): #and then is not
+                Wpressed=False   #change state
                 print ("Wrelease")                                        #
                 #logging                                                  #
                 time = (datetime.datetime.now()-start).total_seconds()    #
@@ -171,8 +178,6 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
         #/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
         
         
-
-
         #%%=================================================================%%#
         #--------------------if I am delivering the drop----------------------#
         #                                                                     #        
@@ -184,15 +189,8 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
                 date = str(datetime.datetime.now())                           #
                 with open(logname,'a') as log:
                     log.write(date+','+str(time)+',DropDeliv\n')              #
-                #drinking = False #setup drinking state                        #
-                #drank = False #setup drank                                    #
                 dropPresent = True                                            #
                 delivering = False                                            #
-                #capmin,capmax,capmean = cap.readbase(cap.ELE0, #read cap.     #
-                #                                     cap.bus,                 #
-                #                                     cap.MPR121,              #
-                #                                     30,10)                   #
-                                   #
                 waitforRetract = getsecs() #start waiting for retraction      #
         #                                                                     #
         #---------------------------------------------------------------------#
@@ -203,33 +201,9 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
         #------------------------if the drop is present-----------------------#
         #                                                                     #
         if dropPresent:                                                       #
-            #if not drinking: #not drinking                                    #
-                #capREAD = cap.readvalue(cap.ELE0,cap.bus,cap.MPR121,10)       #
-                #if capmin-capREAD > 2: #if he start drinking                  #
-                    #capREAD = cap.readvalue(cap.ELE0,cap.bus,cap.MPR121,10)   #
-                    #if capmin-capREAD > 2: #are you sure?                     #
-                        #drinking = True                                       #
-                        #drank = True                                          #
-                        #logging                                              #
-                        #time = (datetime.datetime.now()-start).total_seconds()#
-                        #date = str(datetime.datetime.now())                   #
-                        #with open(logname,'a') as log:
-                            #log.write(date+','+str(time)+',ContactStart\n')   #
-                        #waitforRetract = getsecs() #restart waiting           #
-            #elif drinking:  #if is not drinking, ceck if it stops               #
-                #capREAD = cap.readvalue(cap.ELE0,cap.bus,cap.MPR121,10)       #
-                #if capmin-capREAD < 2:                                        #
-                    #drinking = False
-                    #logging                                                  #
-                    #time = (datetime.datetime.now()-start).total_seconds()    #
-                    #date = str(datetime.datetime.now())                       #
-                    #with open(logname,'a') as log:
-                        #log.write(date+','+str(time)+',ContactStop\n')        #
-                    
             now = getsecs() #now time                                         #
-            nodrank = now-waitforRetract >= 30 #and not drank #
-            #dodrank = now-waitforRetract >= 3 and drank      #
-            if nodrank and not Cpressed: #if time is over          #
+            nodrank = now-waitforRetract >= 30                                #
+            if nodrank and not Cpressed: #if time is over                     #
                 retracter=Thread(name='suck',target=drop.dcmove,              #
                                  args=(pin.dc,3))                             #
                 retracter.start()                                             #
@@ -242,6 +216,7 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
         #                                                                     #
         #---------------------------------------------------------------------#        
         #*********************************************************************#
+        #see habituation file for an explanation of the following lines. they control the turning off routine
         if not killing:
             elapsed = str(datetime.datetime.now()-start)
             elapsed = elapsed.split('.')[0]
