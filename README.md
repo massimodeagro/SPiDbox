@@ -1,10 +1,9 @@
-# SPiDbox
-## A Skinnerbox system to train jumping SPiDers based on the Raspberry Pi
+# SPiDbox: a Skinnerbox system to train jumping SPiDers based on the Raspberry Pi
 
-### Before we start
+## Before we start
 A full description of the SPiDbox, as well as the experimental validation, is published in the Journal of Neuroscience methods (LINK)
 
-### This GitHub page contains:
+## This GitHub page contains:
 * In the "3D_models" folder, the .scad files of all the components to 3d print
 * In the "OS" folder, the full python script, that will have to be copied in the home folder of the Raspberry Pi (see the installation guide)
 * In the "Electronics" folder, a pdf depicting how the circuit needs to be built
