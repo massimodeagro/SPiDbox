@@ -6,7 +6,6 @@ Currently, I am working on a more aesthestically pleasing version of all the fil
 
 **Table of Content:**
 
-[TOC]
 
 ## Folders description
 
@@ -49,16 +48,38 @@ Before you start assemblying, be sure to have printed:
 
 Moreover, you will also need to have:
 * the built circuit with all its modules (see the circuit building instructions for more information)
+* the OledSSD1306
+* a rotary encoder
 * a peristaltic pump based on a Nema17 motor
 * a second peristaltic pump based on any 5V DC motor
 * a Raspberry Pi Zero
 * a Raspberry Pi Camera
 * flexible tubing with internal diameter of 2mm (how much you will needs depends on your own setup. A couple of meters in total should be enough for most people)
-* one resistor for every `ResistorHolder.scad` you printed (but have on the side quite a lot more, they are cheap and can break easly)
+* one photo-resistor for every `ResistorHolder.scad` you printed (but have on the side quite a lot more, they are cheap and can break easly)
 * some liquid container, like falcon tubes.
+* a square piece of plexiglas
 
 Lastly, you will also need some M2 and M3 nuts and bolts, depending on the circuit board you choose. You will for sure need at least 6 short M2 bolts with their corresponding nuts, to secure the Raspberry and its camera to the printed pieces.
 
 ### Assembly
 
+_pictures coming_
 
+1. Screw the Raspberry Pi Zero to the back of `camhold.scad`
+  The camera connector on the Raspberry **needs to be oriented towards the top**
+2. Insert the camera in its enclosure with the ribbon cable already connected, as it will not be accessible anymore once the camera enclosure is assembled
+3. Connect the ribbon cable to the Raspberry Pi
+4. Screw the circuit board inside the `CircuitBox.scad`, on the back wall
+5. Screw the Oled Screen in the front wall of the `CircuitBox.scad` from the inside
+6. Insert the rotary encoder in the hole on the front wall of the `CircuitBox.scad` and screw it in place
+7. Place both the DC and the stepper peristaltic pumps near the `CircuitBox.scad`, and insert their cables from the side holes in the circuitbox. Connect each one to its designated connector.
+8. Fit the output tube of the stepper pump and the imput tube of the DC pump inside the `CircuitBox.scad` from the same holes.
+9. Connect these two tubes to the two couplers of the `DropDispenser.scad`. You should now have the drop dispenser _inside_ the `CircuitBox.scad`
+10. Fit a resistor inside every `ResistorHolder.scad` you printed. Solder to the two legs of the resistor coming out to cables, and connect them to their designated connector on the circuit board. You should now have also the `ResistorHolder.scad` inside the `CircuitBox.scad`
+11. Fit the `ResistorHolder.scad` and the `DropDispenser.scad` in their designated holes from the bottom of the `Exp_box.scad`. these pieces can be fit and then rotated 90° to click in place.
+12. Lay the `Exp_box.scad` on top of the `CircuitBox.scad`
+13. Put a rectangle of plexiglas on top of the `Exp_box.scad`. The plexiglas piece should fit inside the designated groove on top of the `Exp_box.scad`.
+14. Place the `Exp_box_lid.scad` on top. It should stop the plexiglas in place.
+15. Put the `camhold.scad` on top of the `Exp_box_lid.scad`. Its legs should fit in the 4 holes of the `Exp_box_lid.scad`
+16. Connect the raspberry to the circuit board
+17. Connect the raspberry to power
