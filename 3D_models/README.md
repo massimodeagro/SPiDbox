@@ -8,14 +8,20 @@ Currently, I am working on a more aesthestically pleasing version of all the fil
 
 [TOC]
 
-##Folders description
-###UserInterface
+## Folders description
+
+### UserInterface
+
 This folder contains only the file `CircuitBox.scad`, which is placed at the bottom of the SPiDbox. The part has a frontal window, in which an oledSSD1306 can be fitted, and a hole, that can contain a rotary encoder. These two components are the core of the user interface. The empty space inside this part will contain the circuit, other than cables and tubings (see building guide).
 
-###ExperimentalBox
-###CameraAndPiHolder
-###ExchangablePieces
-##Printing Suggestions
+### ExperimentalBox
+
+### CameraAndPiHolder
+
+### ExchangablePieces
+
+## Printing Suggestions
+
 All pieces should print fine without the need for any support. All the pieces that will get in contact with the spider should be white, meaning the `Exp_box.scad`, the `EntranceLid.scad` and the `DropDispenser.scad` (unless for some experimental reasons you decide otherwise.)
 
 You will need to be aware of your own 3D printer capabilities, especially for the tolerances, as there are many pieces that need to fit together.
@@ -24,8 +30,10 @@ The `DropDispenser.scad` will also have to be printed at a higher temperature to
 
 **++Beware:++ depending on the material you will use to print the pieces, you may need to substitute them over time. Especially the `DropDispenser.scad` will inevitably absorb humidity and may become clogged or start dripping if made in PLA. Either choose another material, or change the piece every 3 to 4 weeks.**
 
-##Building guide
-###List of components
+## Building guide
+
+### List of components
+
 Before you start assemblying, be sure to have printed:
 * one `CircuitBox.scad` from the *UserInterface* folder
 * both `Exp_box.scad` and `Exp_box_lid.scad` files from the *ExperimentalBox* folder
@@ -44,6 +52,6 @@ Moreover, you will also need to have:
 
 Lastly, you will also need some M2 and M3 nuts and bolts, depending on the circuit board you choose. You will for sure need at least 6 short M2 bolts with their corresponding nuts, to secure the Raspberry and its camera to the printed pieces.
 
-###Assembly
+### Assembly
 
 
