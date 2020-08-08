@@ -28,7 +28,7 @@ You will need to be aware of your own 3D printer capabilities, especially for th
 The most challenging component will be the `DropDispenser.scad`, as its legs do not represent the most stable base. Adding a brim to the print should be enough to have it print just fine on most printer.
 The `DropDispenser.scad` will also have to be printed at a higher temperature to ensure high layer adesion, and with 100% infill, as it is vital that the piece comes out water tight
 
-**__Beware:__ depending on the material you will use to print the pieces, you may need to substitute them over time. Especially the `DropDispenser.scad` will inevitably absorb humidity and may become clogged or start dripping if made in PLA. Either choose another material, or change the piece every 3 to 4 weeks.**
+**_Beware:_ depending on the material you will use to print the pieces, you may need to substitute them over time. Especially the `DropDispenser.scad` will inevitably absorb humidity and may become clogged or start dripping if made in PLA. Either choose another material, or change the piece every 3 to 4 weeks.**
 
 ## Building guide
 
