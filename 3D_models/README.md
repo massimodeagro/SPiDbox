@@ -16,9 +16,16 @@ This folder contains only the file `CircuitBox.scad`, which is placed at the bot
 
 ### ExperimentalBox
 
+From this folder you will need to print `Exp_box.scad` and `Exp_box_lid.scad`. The other files are imported into the first two for construction. These need to be printed in white, as they will be seen by the spider. You will only need one copy of each.
+
 ### CameraAndPiHolder
 
+From this folder you will need to print one copy of `camhold.scad`. The two stl files are imported into the .scad to construct the camera enclosure. These two stls have been downloaded from https://www.thingiverse.com/thing:92208. 
+Depending on where you buy the camera and depending on its version, it may not fit inside the holder enclosure. If that is the case, you will need to modify slightly that section, either in the file or manually once printed.
+
 ### ExchangablePieces
+
+These files represent the exchangable parts and actuators for the box. You will need at least one `EntranceLid.scad` (that coloses the round opening on the front wall of the `Exp_box.scad`), and one `DropDispenser.scad`. `ResistorHolder.scad` is the case for the photo-resistor, you will need to print one for each sensor you want to use. `Cover.scad` is used to plug the unused holes left.
 
 ## Printing Suggestions
 
