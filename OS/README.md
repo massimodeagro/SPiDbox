@@ -29,6 +29,7 @@ On this guide I will describe steps for the "Lite" version of Raspbian, and I wi
 
 1. While the sd-card is still connected to the computer, copy the files from this repository into the raspberry.
       * The files inside the 'OS' folder need to be placed in /home/pi/.
+      * Note that 'OS' contains a subfolder, subjs. This folder define the subjects available for testing. Here is also where the logs and the video will be saved. To insert a new subject, copy the '001' folder and paste it with a new name. The software will recognize the folder names here as the available subjects
       * Also copy the 'screenImages' foler here. Not the content, the whole folder
 2. Connect to your raspbberry the keyboard, the screen, insert the sd-card and connect to power
   You do not necessarly need the camera connected for setting up your system, but you can connect it now for testing purposes
