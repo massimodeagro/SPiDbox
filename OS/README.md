@@ -31,32 +31,36 @@ On this guide I will describe steps for the "Lite" version of Raspbian, and I wi
   You do not necessarly need the camera connected for setting up your system, but you can connect it now for testing purposes
 2. Once connected to power the raspberry pi will boot. In some minutes it should bring you to the command line
 3. First, you will need to connect to your wifi. Enter the configuration gui
-  ```
-  $ sudo raspi-config
-  ```
-  note, the command sudo will prompt a request for password. The default password for the raspberry is "raspberry"
-  select "Localisation Options" -> "Change wireless country" and specfy your location. Then close the config
-  next, open the `wpa-supplicant` file by the command
-  ```
-  $ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
-  ```
-  go to the bottom of the file and add
-  ```
-  network={
-    ssid="yourwifiname"
-    psk="tyourwifiPassword"
-  }
-  ```
+    ```
+    $ sudo raspi-config
+    ```
+    note, the command sudo will prompt a request for password. The default password for the raspberry is "raspberry"
+    select "Localisation Options" -> "Change wireless country" and specfy your location. Then close the config
+    next, open the `wpa-supplicant` file by the command
+    ```
+    $ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+    ```
+    go to the bottom of the file and add
+    ```
+    network={
+      ssid="yourwifiname"
+      psk="tyourwifiPassword"
+    }
+    ```
 4. now, activate the camera. Go back in the configuration
+    ```
+    $ sudo raspi-config
+    ```
+    select "Interfacing Options" -> "Camera"  and enable it. Close settings and reboot the system by
+     ```
+    $ sudo reboot
+    ```
+5. next, update your system
+    ```
+    $ sudo apt update
+    $ sudo apt upgrade
+    ```
+6. install dependencies
   ```
-  $ sudo raspi-config
-  ```
-  select "Interfacing Options" -> "Camera"  and enable it. Close settings and reboot the system by
-   ```
-  $ sudo reboot
-  ```
-4. next, update your system
-  ```
-  $ sudo apt update
-  $ sudo apt upgrade
+  $ sudo apt install 
   ```
