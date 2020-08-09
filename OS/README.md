@@ -27,10 +27,13 @@ Once able to read the sd, you should be able to see two partitions: one called "
 
 On this guide I will describe steps for the "Lite" version of Raspbian, and I will assume you have keyboard and an HDMI monitor. If you do not have them around and you have experience with raspberry pi, you can setup your Raspbian in "headless" mode by enabling ssh.
 
-1. Connect to your raspbberry the keyboard, the screen, insert the sd-card and connect to power
+1. While the sd-card is still connected to the computer, copy the files from this repository into the raspberry.
+      * The files inside the 'OS' folder need to be placed in /home/pi/.
+      * Also copy the 'screenImages' foler here. Not the content, the whole folder
+2. Connect to your raspbberry the keyboard, the screen, insert the sd-card and connect to power
   You do not necessarly need the camera connected for setting up your system, but you can connect it now for testing purposes
-2. Once connected to power the raspberry pi will boot. In some minutes it should bring you to the command line
-3. First, you will need to connect to your wifi. Enter the configuration gui
+3. Once connected to power the raspberry pi will boot. In some minutes it should bring you to the command line
+4. First, you will need to connect to your wifi. Enter the configuration gui
     ```
     $ sudo raspi-config
     ```
@@ -47,7 +50,7 @@ On this guide I will describe steps for the "Lite" version of Raspbian, and I wi
       psk="tyourwifiPassword"
     }
     ```
-4. now, activate the camera. Go back in the configuration
+5. now, activate the camera. Go back in the configuration
     ```
     $ sudo raspi-config
     ```
@@ -55,12 +58,21 @@ On this guide I will describe steps for the "Lite" version of Raspbian, and I wi
      ```
     $ sudo reboot
     ```
-5. next, update your system
+6. next, update your system
     ```
     $ sudo apt update
     $ sudo apt upgrade
     ```
-6. install dependencies
+7. install dependencies
   ```
   $ sudo apt install 
   ```
+8. to make so that the software launches on boot, you need to add the code into the  `.bashrc` file. to do so, type
+    ```
+    $ sudo nano .bashrc
+    ```
+    scroll to the end of the file and write
+    ```
+    python mainMenu.py
+    ```
+    close the file and save.
