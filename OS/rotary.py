@@ -2,7 +2,7 @@
 """
 SPiDbox
 
-@author: Massimo De Agrò
+@author: Massimo De Agro'
 """
 
 #modules
