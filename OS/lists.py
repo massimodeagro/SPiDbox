@@ -3,7 +3,7 @@ SPiDbox standalone version
 
 subject list and other saved informations
 
-@author: Massimo De Agrò
+@author: Massimo De Agro'
 """
 
 from os import listdir
