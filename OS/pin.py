@@ -3,7 +3,7 @@ SPiDbox
 
 this file contains the definition for all the pins of the system
 
-@author: Massimo De Agrò
+@author: Massimo De Agro'
 """
 
 import RPi.GPIO as GPIO #module that control the pins
