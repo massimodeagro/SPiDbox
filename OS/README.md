@@ -74,7 +74,8 @@ On this guide I will describe steps for the "Lite" version of Raspbian, and I wi
     $ sudo apt upgrade
     ```
 8. install dependencies
-    first, the OLED screen control. the package github page is https://github.com/rm-hull/luma.oled/. We are installing old versions here as the current version only supports python >3.5
+    
+    First, the OLED screen control. the package github page is https://github.com/rm-hull/luma.oled/. We are installing old versions here as the current version only supports python >3.5
     ```
     $ sudo apt install python-dev python-pip libfreetype6-dev libjpeg-dev build-essential libopenjp2-7 libtiff5
     $ sudo -H pip install luma.core==1.6.0
