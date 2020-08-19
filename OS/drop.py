@@ -6,7 +6,7 @@ SkinnerBox standalone version
 module of the pumps control
 This is called by main program
 
-@author: Massimo De Agrò
+@author: Massimo De Agro'
 """
 
 #load modules
