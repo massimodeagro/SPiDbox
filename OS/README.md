@@ -23,7 +23,7 @@ Note that you can read and write on this sd card only with a linux computer, or 
 
 Once able to read the sd, you should be able to see two partitions: one called "boot" and one called "rootfs"
 
-## Setup your Raspbian
+Enter the configuration gui## Setup your Raspbian
 
 On this guide I will describe steps for the "Lite" version of Raspbian, and I will assume you have keyboard and an HDMI monitor. If you do not have them around and you have experience with raspberry pi, you can setup your Raspbian in "headless" mode by enabling ssh.
 
@@ -34,11 +34,20 @@ On this guide I will describe steps for the "Lite" version of Raspbian, and I wi
 2. Connect to your raspbberry the keyboard, the screen, insert the sd-card and connect to power
   You do not necessarly need the camera connected for setting up your system, but you can connect it now for testing purposes
 3. Once connected to power the raspberry pi will boot. In some minutes it should bring you to the command line
-4. First, you will need to connect to your wifi. Enter the configuration gui
+  Note that on your first login, you will be asked to provide the "login", or username, and password. The default username is "pi", the default password is "raspberry"
+4. First, lets enable fast login, so you will not be prompted for username and password anymore. Enter the configuration gui
     ```
     $ sudo raspi-config
     ```
-    note, the command sudo will prompt a request for password. The default password for the raspberry is "raspberry"
+    note, the command sudo will prompt a request for password.
+    choose "Boot Options" -> "Desktop/CLI" and choose "Console autologin".
+ 
+    
+5. Next, you will need to connect to your wifi. If you closed it from the step before, reopen the configuration GUI
+    ```
+    $ sudo raspi-config
+    ```
+    
     select "Localisation Options" -> "Change wireless country" and specfy your location. Then close the config
     next, open the `wpa-supplicant` file by the command
     ```
@@ -51,7 +60,7 @@ On this guide I will describe steps for the "Lite" version of Raspbian, and I wi
       psk="tyourwifiPassword"
     }
     ```
-5. now, activate the camera. Go back in the configuration
+6. now, activate the camera. Go back in the configuration
     ```
     $ sudo raspi-config
     ```
@@ -59,16 +68,16 @@ On this guide I will describe steps for the "Lite" version of Raspbian, and I wi
      ```
     $ sudo reboot
     ```
-6. next, update your system
+7. next, update your system
     ```
     $ sudo apt update
     $ sudo apt upgrade
     ```
-7. install dependencies
+8. install dependencies
   ```
   $ sudo apt install 
   ```
-8. to make so that the software launches on boot, you need to add the code into the  `.bashrc` file. to do so, type
+9. to make so that the software launches on boot, you need to add the code into the  `.bashrc` file. to do so, type
     ```
     $ sudo nano .bashrc
     ```
