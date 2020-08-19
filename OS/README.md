@@ -60,11 +60,11 @@ On this guide I will describe steps for the "Lite" version of Raspbian, and I wi
       psk="tyourwifiPassword"
     }
     ```
-6. now, activate the camera. Go back in the configuration
+6. now, activate the various interfaces. Go back in the configuration
     ```
     $ sudo raspi-config
     ```
-    select "Interfacing Options" -> "Camera"  and enable it. Close settings and reboot the system by
+    select "Interfacing Options", from there you need to activate the camera, the SPI and I2C. Then close settings and reboot the system by
      ```
     $ sudo reboot
     ```
