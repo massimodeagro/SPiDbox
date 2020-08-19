@@ -4,7 +4,7 @@ SPiDbox
 module containing icons for oled
 This is called by main program
 
-@author: Massimo De Agrò
+@author: Massimo De Agro'
 """
 
 #the icons are defined in lists of lists, where 1 is an on pixel and 0 is an off pixel
