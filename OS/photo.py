@@ -6,7 +6,7 @@ module of the photoresistor reading
 V0.1 of photoresistor voltage reading after the comparator working
 This is called by main program and single tests. for a complete explanation of the system see the paper
 
-@author: Massimo De Agrò
+@author: Massimo De Agro'
 """
 
 #%%general variables
