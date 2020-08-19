@@ -14,7 +14,7 @@ import random
 import os 
 
 import epd2in9
-import Image
+from PIL import Image
 
 # Import custom modules
 import drop
