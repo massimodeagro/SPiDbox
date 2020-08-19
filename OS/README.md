@@ -74,16 +74,24 @@ On this guide I will describe steps for the "Lite" version of Raspbian, and I wi
     $ sudo apt upgrade
     ```
 8. install dependencies
-  first, the OLED screen control. the package github page is https://github.com/rm-hull/luma.oled/. We are installing old versions here as the current version only supports python >3.5
-  ```
-  $ sudo apt install python-dev python-pip libfreetype6-dev libjpeg-dev build-essential libopenjp2-7 libtiff5
-  $ sudo -H pip install luma.core==1.6.0
-  $ sudo -H pip install luma.oled==2.3.1
-  ```
-  next, the analog to digital converter control, from Adafruit. This is again an older version for pyton2.7 support
-  ```
-  $ sudo -H pip install adafruit-ads1x15
-  ```
+    first, the OLED screen control. the package github page is https://github.com/rm-hull/luma.oled/. We are installing old versions here as the current version only supports python >3.5
+    ```
+    $ sudo apt install python-dev python-pip libfreetype6-dev libjpeg-dev build-essential libopenjp2-7 libtiff5
+    $ sudo -H pip install luma.core==1.6.0
+    $ sudo -H pip install luma.oled==2.3.1
+    ```
+    next, the analog to digital converter control, from Adafruit. This is again an older version for pyton2.7 support
+    ```
+    $ sudo -H pip install adafruit-ads1x15
+    ```
+    the python raspberry pi camera module
+    ```
+    $ sudo -H pip install picamera
+    ```
+    lastly, fonts support 
+    ```
+    $ sudo apt install fontconfig
+    ```
 9. to make so that the software launches on boot, you need to add the code into the  `.bashrc` file. to do so, type
     ```
     $ sudo nano .bashrc
