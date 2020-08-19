@@ -4,7 +4,7 @@ SPiDbox software
 This file should be called by the Raspberry Pi automatically at startup. 
 It contains the SPiDbox menu and is responsible for calling every other files
 
-@author: Massimo De Agrò
+@author: Massimo De Agro'
 """
 #importing general modules
 import logging # for logging info and errors
