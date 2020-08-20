@@ -23,7 +23,9 @@ Note that you can read and write on this sd card only with a linux computer, or 
 
 Once able to read the sd, you should be able to see two partitions: one called "boot" and one called "rootfs"
 
-Enter the configuration gui## Setup your Raspbian
+Enter the configuration gui
+
+## Setup your Raspbian
 
 On this guide I will describe steps for the "Lite" version of Raspbian, and I will assume you have keyboard and an HDMI monitor. If you do not have them around and you have experience with raspberry pi, you can setup your Raspbian in "headless" mode by enabling ssh.
 
