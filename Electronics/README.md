@@ -1,7 +1,7 @@
-# Soldering the circuit
+# Preparing the ciruit
 
-On the pdf you will be able to see the connections that needs to be made. A printed circuit is in the making, but for now connections will need to be made by hand.
+In this folder, you will find a PDF with the schematic of the circuit. If you wish to make your own circuit board, just follow the schematic. If you instead prefer, you can download the zip containing the gerber file (this have been generated with easyEDA https://easyeda.com/
 
-The circuit is fundamentally pretty simple, the board will have the job of connecting the raspberry with the other components.
+## Things you will need
 
-I suggest you start by soldering a 20x2 connectors to a board. This connector will link to a ribbon cable, that will on the other side connect to the Raspberry Pi. Then, follow the schematic to connect the rest of the components.
+Before starting, you will need to acquire some components
