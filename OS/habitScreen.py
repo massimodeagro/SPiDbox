@@ -20,6 +20,8 @@ from PIL import Image
 import drop
 #import MPR121 as cap
 import pin
+
+steps_in_one_drop = 33
     
 def habit(name,test,start,canvas, device,font, fontT):
     from time import time as getsecs
@@ -82,9 +84,9 @@ def habit(name,test,start,canvas, device,font, fontT):
             time = (datetime.datetime.now()-start).total_seconds()            #
             date = str(datetime.datetime.now())                               #
             deliverer=Thread(name='Perist',target=drop.stepmove,              #
-                        args=(pin.stp,pin.clk,0,19,pos))                      #
+                        args=(pin.stp,pin.clk,0,steps_in_one_drop,pos))       #
             deliverer.start() # deliver a drop                                #
-            pos = drop.postrack(19,pos)
+            pos = drop.postrack(steps_in_one_drop,pos)
             waitfordeliver = datetime.datetime.now() #restart waiting         #
         #                                                                     #
         #/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/#
