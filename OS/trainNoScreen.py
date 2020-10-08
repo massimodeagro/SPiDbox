@@ -61,7 +61,7 @@ def trainNS(name,test,cside,start,canvas, device,font, fontT):
     pos = 0  #current motor position                                          #
     delivering = False                                                        #
     dropPresent = False                                                       #
-    stepsnum = 19 #number of steps for a drop
+    stepsnum = 33 #number of steps for a drop
     #                                                                         #
     #-------------------------------------------------------------------------#
     ###########################################################################
