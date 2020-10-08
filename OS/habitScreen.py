@@ -52,7 +52,7 @@ def habit(name,test,start,canvas, device,font, fontT):
     #State variables
     killing = False                                                           #
     delivering = False                                                        #
-    dropPresent = False                                                       #                                                           #
+    dropPresent = False                                                       #
     waitfordeliver = datetime.datetime.now() #count seconds until next delivery of drop
     
     #record with the piCamera
@@ -69,11 +69,11 @@ def habit(name,test,start,canvas, device,font, fontT):
     timetowait = random.sample(range(45,91),1)[0]
     #%%########################################################################
     #--------------------------------MAIN LOOP--------------------------------#
+    pos=0
     while (True):
         #%%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/%%#
         #-------------------------FOR DELIVERING DROP-------------------------#
         #                                                                     #
-        pos=0                                                                 #
         thismoment = datetime.datetime.now()                                  #
         waited = thismoment-waitfordeliver  #how much have I waited?
         
