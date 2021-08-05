@@ -11,4 +11,4 @@ A full description of the SPiDbox, as well as the experimental validation, is av
 
 **Inside each folder you will find a guide for printing, installation and building, respectively.**
 
-For any request or comment, please contact me at *massimo_deagro@fas.harvard.edu*. I would like to make the guides as user-friendly as possible, so every suggestion is highly appreciated.
+For any request or comment, please contact me at *massimo.de-agro@ur.de*. I would like to make the guides as user-friendly as possible, so every suggestion is highly appreciated.
